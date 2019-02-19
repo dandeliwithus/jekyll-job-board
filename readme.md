@@ -259,5 +259,5 @@ To use what I have created, in your `_includes` folder create a file called `alg
 
 After all that you should have a page that looks like the following:
 
-![working algolia]({{ site.url }}{{ site.base.url }}/img/first_jb.png){:class="img-fluid"}
+![working algolia](https://github.com/mrpbennett/jekyll-job-board/blob/master/img/first_jb.png?raw=true){:class="img-fluid"}
 
