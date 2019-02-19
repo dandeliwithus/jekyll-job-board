@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: vacancy-post
 jobtitle:  "Waiter/Waitress - Covent Garden"
 dateposted:   2019-02-19
 

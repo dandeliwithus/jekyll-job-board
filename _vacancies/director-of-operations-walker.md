@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: vacancy-post
 jobtitle:  "Director of Operations"
 dateposted:   2019-01-18
 description: Are you looking for an exciting opportunity to lead the development and delivery of operations for a fast growing e-commerce business?...

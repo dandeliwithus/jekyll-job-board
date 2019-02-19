@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: vacancy-post
 jobtitle:  "Business Development Director"
 dateposted:   2019-01-18
 

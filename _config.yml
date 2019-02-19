@@ -27,6 +27,17 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username:  jekyll
 
+algolia:
+  application_id: "R9SRZHNQLN"
+  index_name: "vacancies"
+  search_only_api_key: "05e74d9ca0ea2eeb3238addf6c89d6b6"
+  extensions_to_index:
+    - md
+  settings:
+    searchableAttributes:
+      - jobtitle
+      - tags
+
 collections:
   vacancies:
     output: true

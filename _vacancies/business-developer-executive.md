@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: vacancy-post
 jobtitle:  "Business Development Executive"
 dateposted:   2019-02-10
 

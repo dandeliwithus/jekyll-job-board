@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: vacancy-post
 jobtitle:  "Head of Operations - Growing Restaurant Brand "
 dateposted:   2019-02-18
 

@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: vacancy-post
 jobtitle:  "Chef Manager - Palmers Green"
 dateposted:   2019-01-18
 

@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: vacancy-post
 jobtitle: "Restaurant General Manager"
 dateposted:   2019-01-18
 
