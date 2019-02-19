@@ -7,7 +7,7 @@ layout: default
     <div id="search-searchbar"></div>
     
     <div class="post-list" id="search-hits">
-        {% assign sorted = (site.vacancies | sort: 'dateposted') | reverse %}
+        {% assign sorted = site.vacancies | sort: 'dateposted' | reverse %}
         {% for job in sorted %}
         <div class="post-item"></div>
         {% endfor %}

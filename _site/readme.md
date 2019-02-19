@@ -26,7 +26,7 @@ You will now need to create the following folders and files in your directory.
 │   └── navbar.html
 ├── _layouts
 │   ├── default.html
-│   └── vacancie-post.html
+│   └── vacancy-post.html
 ├── _vacancies
 ├── css
 │   ├── main.css
@@ -125,7 +125,40 @@ Note that `ALGOLIA_API_KEY` should be set to your admin API key. This key has wr
 
 For more info on Algolia for Jekyll go [here](https://community.algolia.com/jekyll-algolia/getting-started.html)
 
-### Adding InstantSearch.js
+#### 5. Setting up the vancany posts
+
+We now have "backend" and the search functionality built into our pages. We now need to create some job descriptions in our `_vacancies` folder. 
+
+If you notice from the return statement above there is the following elements.
+
+- `${hit.jobtitle}`
+- `${hit.dateposted}`
+- `${hit.salary}`
+- `${hit.location}`
+
+These are custom bits of Front Matter on every `.md` file for example:
+
+```yml
+---
+layout: vacancy-post
+jobtitle:  "Awesome Jekyll Developer"
+dateposted:   2019-02-10
+
+salary: £1,000,000 per year
+location: Anywhere
+
+tags:
+    - developer
+    - front-end
+    - jekyll
+
+reference: 12345678
+---
+```
+
+The `${content}` block will pull out the first paragraph of the job description and use this as a snippet. So just remember not to use any headings at the beginning of the job description.
+
+### 6. Adding InstantSearch.js
 
 Because the `minima` is pre-packaged as a dependency, if you want to edit it, you need to overwrite some of its files locally. For this tutorial, we’ll need to update [one file](https://raw.githubusercontent.com/jekyll/minima/master/_layouts/home.html) from the original theme.
 
@@ -223,3 +256,8 @@ To use what I have created, in your `_includes` folder create a file called `alg
 </script>
 
 ```
+
+After all that you should have a page that looks like the following:
+
+--- insert phot ---
+
