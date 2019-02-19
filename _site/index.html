@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://localhost:4000css/main.css">
+
+    <title>Easy Jekyll Job Board</title>
+</head>
+
+<body class="d-flex flex-column h-100">
+
+
+    <main role="main" class="flex-shrink-0">
+
+        <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+        <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
+            alt="">
+        Bootstrap
+    </a>
+</nav>
+
+        <div class="container">
+
+    <div id="search-searchbar"></div>
+    
+    <div class="post-list" id="search-hits">
+        
+        
+        <div class="post-item"></div>
+        
+        <div class="post-item"></div>
+        
+        <div class="post-item"></div>
+        
+        <div class="post-item"></div>
+        
+        <div class="post-item"></div>
+        
+        <div class="post-item"></div>
+        
+        <div class="post-item"></div>
+        
+        <div class="post-item"></div>
+        
+        <div class="post-item"></div>
+        
+    </div>
+
+    <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.4/dist/instantsearch.min.css">
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.4"></script>
+<link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.4/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+    // Instanciating InstantSearch.js with Algolia credentials
+    const search = instantsearch({
+        appId: '',
+        indexName: '',
+        apiKey: ''
+    });
+
+    const hitTemplate = function (hit) {
+
+        let date = '';
+        if (hit.date) {
+            date = moment.unix(hit.date).format('MMM D, YYYY');
+        }
+
+        let url = `http://localhost:4000${hit.url}#${hit.anchor}`;
+
+        const title = hit._highlightResult.title.value;
+
+        let breadcrumbs = '';
+        if (hit._highlightResult.headings) {
+            breadcrumbs = hit._highlightResult.headings.map(match => {
+                return `<span class="post-breadcrumb">${match.value}</span>`
+            }).join(' > ')
+        }
+
+        const content = hit._highlightResult.html.value;
+
+        return `
+            <div class="post-item">
+                <h2><a class="post-link" href="${hit.url}">${hit.jobtitle}</a></h2>
+                <span class="text-muted text-lower date-posted">Posted ${hit.dateposted}</span>
+                <div class="listing-meta my-3">
+                    <span class="listing-tags text-lower">${hit.salary}</span>
+                    <span class="listing-tags text-lower">${hit.location}</span>
+                </div>
+                
+                <div class="post-snippet">${content}</div>
+                <hr>
+            </div>
+        `;
+    }
+
+    // Adding searchbar and results widgets
+    search.addWidget(
+        instantsearch.widgets.searchBox({
+            container: '#search-searchbar',
+            placeholder: 'Search for vacancies',
+            poweredBy: true // This is required if you're on the free Community plan
+        })
+    );
+    search.addWidget(
+        instantsearch.widgets.hits({
+            container: '#search-hits',
+            empty: 'No results',
+            templates: {
+                item: hitTemplate
+            }
+        })
+    );
+
+    // Starting the search
+    search.start();
+</script>
+
+</div>
+
+    </main>
+
+    <footer class="footer mt-auto py-3">
+    <div class="container">
+        <span class="text-muted">Easy Jekyll Job Board</span>
+    </div>
+</footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

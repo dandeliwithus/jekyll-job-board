@@ -1,0 +1,70 @@
+<link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.4/dist/instantsearch.min.css">
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.4"></script>
+<link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.4/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+    // Instanciating InstantSearch.js with Algolia credentials
+    const search = instantsearch({
+        appId: '{{ site.algolia.application_id }}',
+        indexName: '{{ site.algolia.index_name }}',
+        apiKey: '{{ site.algolia.search_only_api_key }}'
+    });
+
+    const hitTemplate = function (hit) {
+
+        let date = '';
+        if (hit.date) {
+            date = moment.unix(hit.date).format('MMM D, YYYY');
+        }
+
+        let url = `{{ site.url }}${hit.url}#${hit.anchor}`;
+
+        const title = hit._highlightResult.title.value;
+
+        let breadcrumbs = '';
+        if (hit._highlightResult.headings) {
+            breadcrumbs = hit._highlightResult.headings.map(match => {
+                return `<span class="post-breadcrumb">${match.value}</span>`
+            }).join(' > ')
+        }
+
+        const content = hit._highlightResult.html.value;
+
+        return `
+            <div class="post-item">
+                <h2><a class="post-link" href="${hit.url}">${hit.jobtitle}</a></h2>
+                <span class="text-muted text-lower date-posted">Posted ${hit.dateposted}</span>
+                <div class="listing-meta my-3">
+                    <span class="listing-tags text-lower">${hit.salary}</span>
+                    <span class="listing-tags text-lower">${hit.location}</span>
+                </div>
+                
+                <div class="post-snippet">${content}</div>
+                <hr>
+            </div>
+        `;
+    }
+
+    // Adding searchbar and results widgets
+    search.addWidget(
+        instantsearch.widgets.searchBox({
+            container: '#search-searchbar',
+            placeholder: 'Search for vacancies',
+            poweredBy: true // This is required if you're on the free Community plan
+        })
+    );
+    search.addWidget(
+        instantsearch.widgets.hits({
+            container: '#search-hits',
+            empty: 'No results',
+            templates: {
+                item: hitTemplate
+            }
+        })
+    );
+
+    // Starting the search
+    search.start();
+</script>
